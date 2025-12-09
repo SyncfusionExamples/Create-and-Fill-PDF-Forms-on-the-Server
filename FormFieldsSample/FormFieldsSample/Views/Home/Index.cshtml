@@ -1,0 +1,60 @@
+﻿@model FormFieldsSample.Models.UserRegisterationModel
+
+@{
+    ViewData["Title"] = "Survey and Research Registration Form";
+}
+<style>
+
+.custom-select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: auto;
+}
+
+</style>
+<div class="control-section" style="max-width:900px;margin:auto;">
+    <h2 style="margin-bottom:18px;margin-top:15px">Survey and Research Registration Form</h2>
+    <h4 style="color:#666;margin-top:0;margin-bottom:18px;">Registration Details</h4>
+
+    @using (Html.BeginForm("CreateForm", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label style="font-size:20px;margin-bottom:14px;">Full Name</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+
+            <label style="font-size:20px;margin-bottom:14px">Email Address</label>
+            @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", @type = "email" })
+
+            <label style="font-size:20px;margin-bottom:14px">Phone Number</label>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @type = "tel" })
+
+            <label style="font-size:20px;margin-bottom:14px">Date of Birth</label>
+            @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+            <label style="font-size:20px;margin-bottom:14px">Gender</label>
+            @Html.DropDownListFor(m => m.Gender, Model.GenderList, new { @class = "custom-select" })
+
+            <label style="font-size:20px;margin-bottom:14px">Marital Status</label>
+            @Html.DropDownListFor(m => m.MaritalStatus, Model.MaritalStatusList, new { @class = "custom-select" })
+
+            <label style="font-size:20px;margin-bottom:14px">Occupation</label>
+            @Html.DropDownListFor(m => m.Occupation, Model.OccupationList, new { @class = "custom-select" })
+
+            <label style="font-size:20px;margin-bottom:14px">Address</label>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+
+            <div class="form-check" style="margin-top:10px;">
+                @Html.CheckBoxFor(m => m.ReceiveNotifications, new { @class = "form-check-input" })
+                <label class="form-check-label">Would you like to get notifications from us?</label>
+            </div>
+        </div>
+
+        <div style="margin-top:16px;">
+            <input type="submit" class="btn btn-primary" value="Create Form" style="width:150px;" />
+        </div>
+    }
+</div>
